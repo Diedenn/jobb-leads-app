@@ -97,19 +97,25 @@ with st.sidebar.expander("AI-fråga till datan"):
 
         Fråga: {user_question}
         """
-        try:
-            response = openai.Completion.create(
-                   model="gpt-4",
-                prompt=prompt,
-                temperature=0,
-                max_tokens=500  # Anpassa som du vill
-            )
-            code = response.choices[0].message.content.strip()
-            st.code(code, language='python')
-            with st.spinner("Kör GPT-filter..."):
-                df = eval(code)
-        except Exception as e:
-            st.error(f"Fel vid GPT-tolkning: {e}")
+       # Fråga till GPT
+try:
+    response = openai.Completion.create(
+        model="gpt-4",
+        prompt=prompt,
+        temperature=0,
+        max_tokens=500  # Anpassa som du vill
+    )
+    # Uppdaterad metod för att hämta svaret
+    code = response['choices'][0]['message']['content'].strip()
+
+    st.code(code, language='python')
+    
+    with st.spinner("Kör GPT-filter..."):
+        df = eval(code)
+        
+except Exception as e:
+    st.error(f"Fel vid GPT-tolkning: {e}")
+
 
 # --- Visa resultat ---
 st.subheader(f"Resultat: {len(df)} annonser")
