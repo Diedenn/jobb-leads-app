@@ -32,16 +32,55 @@ st.title("Jobbmatchning & Leadsanalys")
 
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
+# --- Region- och yrkesgrupp-ID:n ---
+region_choices = {
+    "Stockholms län": "1",
+    "Uppsala län": "3",
+    "Södermanlands län": "4",
+    "Östergötlands län": "5",
+    "Jönköpings län": "6",
+    "Kronobergs län": "7",
+    "Kalmar län": "8",
+    "Gotlands län": "9",
+    "Blekinge län": "10",
+    "Skåne län": "12",
+    "Hallands län": "13",
+    "Västra Götalands län": "14",
+    "Värmlands län": "17",
+    "Örebro län": "18",
+    "Västmanlands län": "19",
+    "Dalarnas län": "20",
+    "Gävleborgs län": "21",
+    "Västernorrlands län": "22",
+    "Jämtlands län": "23",
+    "Västerbottens län": "24",
+    "Norrbottens län": "25"
+}
+
+occupation_groups = {
+    "Installation, drift, underhåll": "3",
+    "Hälso- och sjukvård": "4",
+    "Pedagogiskt arbete": "5",
+    "Bygg och anläggning": "6",
+    "Hotell, restaurang, storhushåll": "7",
+    "Transport": "8",
+    "Tekniskt arbete": "9",
+    "Industriell tillverkning": "10",
+    "Försäljning, inköp, marknadsföring": "11",
+    "Data/IT": "12",
+    "Administration, ekonomi, juridik": "13"
+}
+
 # --- Välj datumintervall och filter ---
 st.sidebar.markdown("### 📅 Hämta jobbannonser via API")
 start_date = st.sidebar.date_input("Startdatum", value=datetime.today() - timedelta(days=7))
 end_date = st.sidebar.date_input("Slutdatum", value=datetime.today())
 q_filter = st.sidebar.text_input("Sökord (t.ex. elektriker)", value="")
-region_filter = st.sidebar.text_input("Region-ID (t.ex. 1 för Stockholm)", value="")
+region_choice = st.sidebar.selectbox("Välj region", [""] + list(region_choices.keys()))
 extent_filter = st.sidebar.selectbox("Arbetstid", ["", "1 - Heltid", "2 - Deltid"])
-occupation_group_filter = st.sidebar.text_input("Yrkesgrupp-ID (valfritt)", value="")
-
+occupation_choice = st.sidebar.selectbox("Välj yrkesområde", [""] + list(occupation_groups.keys()))
 kundfilter_val = st.sidebar.radio("Kundfilter", ["Alla annonser", "Endast nuvarande kunder", "Endast mina kunder", "Endast nya leads"])
+require_contact = st.sidebar.checkbox("Endast annonser med kontaktperson & telefonnummer")
 
 # --- API-hämtning dag för dag ---
 @st.cache_data(ttl=3600)
@@ -64,14 +103,14 @@ def hamta_jobtech_data_interval(start, end):
             }
             if q_filter:
                 params["q"] = q_filter
-            if region_filter:
-                params["region"] = region_filter
+            if region_choice:
+                params["region"] = region_choices[region_choice]
             if extent_filter.startswith("1"):
                 params["extent"] = "1"
             elif extent_filter.startswith("2"):
                 params["extent"] = "2"
-            if occupation_group_filter:
-                params["occupation-group-id"] = occupation_group_filter
+            if occupation_choice:
+                params["occupation-group-id"] = occupation_groups[occupation_choice]
 
             r = requests.get(url, headers=headers, params=params)
             if r.status_code != 200:
@@ -141,6 +180,10 @@ elif kundfilter_val == "Endast mina kunder":
     df = df[df['mina_kunder'] == True]
 elif kundfilter_val == "Endast nya leads":
     df = df[df['kund'] == False]
+
+# --- Valfri filtrering: endast med kontaktperson och telefon ---
+if require_contact:
+    df = df[df['telefon'].notnull() & df['kontakt_namn'].notnull()]
 
 # --- Visa resultat ---
 st.subheader(f"Resultat: {len(df)} annonser")
