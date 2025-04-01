@@ -56,6 +56,23 @@ region_choices = {
     "Norrbottens län": "25"
 }
 
+# Mappning mellan kommuner och län
+kommun_to_region = {
+    "Stockholm": "Stockholms län",
+    "Göteborg": "Västra Götalands län",
+    "Malmö": "Skåne län",
+    "Uppsala": "Uppsala län",
+    "Örebro": "Örebro län",
+    "Västerås": "Västmanlands län",
+    "Linköping": "Östergötlands län",
+    "Norrköping": "Östergötlands län",
+    "Sundsvall": "Västernorrlands län",
+    "Umeå": "Västerbottens län",
+    "Luleå": "Norrbottens län",
+    "Gävle": "Gävleborgs län"
+    # (lägg till fler vid behov)
+}
+
 occupation_groups = {
     "Installation, drift, underhåll": "3",
     "Hälso- och sjukvård": "4",
@@ -79,6 +96,7 @@ extent_filter = st.sidebar.selectbox("Arbetstid", ["Inget filter", "1 - Heltid",
 occupation_choice = st.sidebar.selectbox("Välj yrkesområde", ["Inget filter"] + list(occupation_groups.keys()))
 kundfilter_val = st.sidebar.radio("Kundfilter", ["Alla annonser", "Endast nuvarande kunder", "Endast mina kunder", "Endast nya leads"])
 require_contact = st.sidebar.checkbox("Endast annonser med kontaktperson & telefonnummer")
+logg_container = st.sidebar.empty()
 
 @st.cache_data(ttl=3600)
 def hamta_jobtech_data_interval(start, end):
@@ -90,6 +108,7 @@ def hamta_jobtech_data_interval(start, end):
     while current_date <= end:
         next_day = current_date + timedelta(days=1)
         offset = 0
+        dagens_trafik = 0
 
         while True:
             params = {
@@ -118,13 +137,17 @@ def hamta_jobtech_data_interval(start, end):
                 break
             all_hits.extend(hits)
             offset += 100
+            dagens_trafik += len(hits)
+
+        logg_container.info(f"{current_date.strftime('%Y-%m-%d')}: {dagens_trafik} annonser")
         current_date = next_day
 
     return pd.json_normalize(all_hits)
 
 if st.sidebar.button("🔄 Hämta nya jobbannonser"):
-    jobs_df = hamta_jobtech_data_interval(start_date, end_date)
-    st.session_state["jobs_df"] = jobs_df
+    with st.spinner("Hämtar annonser från API..."):
+        jobs_df = hamta_jobtech_data_interval(start_date, end_date)
+        st.session_state["jobs_df"] = jobs_df
 
 if "jobs_df" not in st.session_state:
     st.info("🔹 Klicka på 'Hämta nya jobbannonser' i sidopanelen för att ladda data från API.")
@@ -147,9 +170,15 @@ if 'employer.organization_number' in jobs_df.columns:
 else:
     jobs_df['orgnr'] = pd.NA
 
+jobs_df['municipality'] = jobs_df.get('workplace_address.municipality', pd.NA)
+jobs_df['region'] = jobs_df.get('workplace_address.region', pd.NA)
+jobs_df['region'] = jobs_df.apply(
+    lambda row: kommun_to_region.get(row['municipality'], row['region']) if pd.isna(row['region']) else row['region'],
+    axis=1
+)
+
 jobs_df['description'] = jobs_df.get('description.text', pd.NA)
 jobs_df['headline'] = jobs_df.get('headline', pd.NA)
-jobs_df['region'] = jobs_df.get('workplace_address.region', pd.NA)
 jobs_df['occupation'] = jobs_df.get('occupation.label', pd.NA)
 jobs_df['occupation_group'] = jobs_df.get('occupation_group.label', pd.NA)
 jobs_df['employer_name'] = jobs_df.get('employer.name', pd.NA)
@@ -176,7 +205,7 @@ if require_contact:
     df = df[df['telefon'].notnull() & df['kontakt_namn'].notnull()]
 
 st.subheader(f"Resultat: {len(df)} annonser")
-st.dataframe(df[['employer_name', 'headline', 'description', 'region', 'working_hours_type', 'telefon', 'kontakt_namn', 'kontakt_titel', 'kund', 'mina_kunder']].reset_index(drop=True))
+st.dataframe(df[['employer_name', 'headline', 'description', 'region', 'municipality', 'working_hours_type', 'telefon', 'kontakt_namn', 'kontakt_titel', 'kund', 'mina_kunder']].reset_index(drop=True))
 
 def to_excel_bytes(df):
     output = BytesIO()
