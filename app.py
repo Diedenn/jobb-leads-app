@@ -11,7 +11,7 @@ st.set_page_config(page_title="Jobbmatchning", layout="wide")
 # --- Enkel lösenordsskydd ---
 def check_password():
     def password_entered():
-        if hashlib.sha256(st.session_state["password"].encode()).hexdigest() == st.secrets["app_password"]:
+        if st.session_state["password"] == st.secrets["app_password"]:
             st.session_state["password_correct"] = True
             del st.session_state["password"]
         else:
