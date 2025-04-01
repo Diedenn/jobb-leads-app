@@ -97,38 +97,57 @@ if val_saljare != "Visa alla":
 if only_non_customers:
     df = df[~df['kund']]
 
-# --- GPT-fråga ---
-with st.sidebar.expander("AI-fråga till datan"):
-    st.markdown("Exempel på frågor du kan ställa:")
-    st.markdown("- Visa alla jobb i Stockholm som är heltid och inte är kunder")
-    st.markdown("- Filtrera ut annonser med titeln \"lastbilschaufför\" som har telefonnummer")
-    st.markdown("- Visa alla jobb där det finns kontaktperson och titel i beskrivningen")
-    st.markdown("- Filtrera på annonser som innehåller \"ekonomi\" i headline men inte är från kund")
+# --- AI Chat-gränssnitt ---
+st.sidebar.markdown("### 💬 GPT-fråga till datan")
+user_input = st.chat_input("Ställ en fråga till GPT om jobbdatat")
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history = []
 
-    user_question = st.text_area("Din fråga:")
-    if user_question:
-        prompt = f"""
-        Du får en pandas DataFrame som heter df med följande kolumner: region, working_hours_type, kund, telefon, headline, description, kontakt_namn, kontakt_titel.
-        Svara endast med ett filteruttryck, t.ex. (df['region'] == 'Stockholm') & (df['headline'].str.contains('elektriker')) osv.
-        Inkludera inte "df =" eller någon annan förklaring. Returnera endast uttrycket.
+for msg in st.session_state.chat_history:
+    with st.chat_message(msg["role"]):
+        st.markdown(msg["content"])
 
-        Fråga: {user_question}
-        """
-        try:
-            response = client.chat.completions.create(
-                model="gpt-4",
-                messages=[
-                    {"role": "system", "content": "Du är en assistent som hjälper till att filtrera en pandas DataFrame."},
-                    {"role": "user", "content": prompt}
-                ],
-                temperature=0
-            )
-            code = response.choices[0].message.content.strip()
-            st.code("df = df[" + code + "]", language='python')
-            with st.spinner("Kör GPT-filter..."):
-                df = df[eval(code)]
-        except Exception as e:
-            st.error(f"Fel vid GPT-tolkning: {e}")
+if user_input:
+    st.session_state.chat_history.append({"role": "user", "content": user_input})
+    with st.chat_message("user"):
+        st.markdown(user_input)
+
+    prompt = f"""
+    Du får en pandas-DataFrame som heter df med kolumner: region, working_hours_type, kund, telefon, headline, description, kontakt_namn, kontakt_titel.
+    Din uppgift är att hjälpa användaren filtrera data. 
+    Returnera först en kort förklaring på svenska om vad filtret gör, och sedan ett filteruttryck (t.ex. (df['region'] == 'Stockholm') & ...).
+    Använd .notna() för att filtrera på kontaktfält. Skriv aldrig df['col1'].str.contains(df['col2']).
+    Svara alltid i formatet:
+    Förklaring: <kort text>
+    Filter: <pandas-filter-uttryck>
+
+    Fråga: {user_input}
+    """
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4",
+            messages=[
+                {"role": "system", "content": "Du är en assistent som hjälper till att filtrera en pandas DataFrame."},
+                {"role": "user", "content": prompt}
+            ],
+            temperature=0
+        )
+        output = response.choices[0].message.content.strip()
+        explanation, filter_code = output.split("Filter:", 1)
+        filter_code = filter_code.strip()
+
+        st.session_state.chat_history.append({"role": "assistant", "content": explanation.strip() + f"\n```python\ndf = df[{filter_code}]\n```"})
+        with st.chat_message("assistant"):
+            st.markdown(explanation.strip())
+            editable_code = st.text_area("Redigera filter (valfritt innan körning)", value=filter_code, height=100)
+            if st.button("Kör detta filter"):
+                try:
+                    df = df[eval(editable_code)]
+                    st.success("Filtrering genomförd!")
+                except Exception as e:
+                    st.error(f"Fel i filterkoden: {e}")
+    except Exception as e:
+        st.error(f"Fel vid GPT-anrop: {e}")
 
 # --- Visa resultat ---
 st.subheader(f"Resultat: {len(df)} annonser")
