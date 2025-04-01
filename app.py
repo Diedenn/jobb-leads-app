@@ -10,7 +10,9 @@ st.set_page_config(page_title="Jobbmatchning", layout="wide")
 # --- Enkel lösenordsskydd utan hash ---
 def check_password():
     def password_entered():
-        if st.session_state["password"] == st.secrets["app_password"]:
+        if "password" not in st.session_state:
+            return
+        if st.session_state["password"] == "Satellite2025":
             st.session_state["password_correct"] = True
             del st.session_state["password"]
         else:
@@ -87,7 +89,12 @@ if selected_region:
 if selected_hours:
     df = df[df['working_hours_type'].isin(selected_hours)]
 if job_title_query:
-    df = df[df['headline'].str.contains(job_title_query, case=False, na=False)]
+    df = df[
+        df['headline'].str.contains(job_title_query, case=False, na=False) |
+        df['description'].str.contains(job_title_query, case=False, na=False) |
+        df['occupation_group'].str.contains(job_title_query, case=False, na=False) |
+        df['occupation'].str.contains(job_title_query, case=False, na=False)
+    ]
 if require_phone:
     df = df[df['telefon'].notnull()]
 if exclude_union:
@@ -113,8 +120,9 @@ if user_input:
         st.markdown(user_input)
 
     prompt = f"""
-    Du får en pandas-DataFrame som heter df med kolumner: region, working_hours_type, kund, telefon, headline, description, kontakt_namn, kontakt_titel.
+    Du får en pandas-DataFrame som heter df med kolumner: region, working_hours_type, kund, telefon, headline, description, kontakt_namn, kontakt_titel, occupation_group, occupation.
     Din uppgift är att hjälpa användaren filtrera data. 
+    Om användaren frågar om ett yrke eller roll, sök i kolumnerna: headline, description, occupation_group och occupation.
     Returnera först en kort förklaring på svenska om vad filtret gör, och sedan ett filteruttryck (t.ex. (df['region'] == 'Stockholm') & ...).
     Använd .notna() för att filtrera på kontaktfält. Skriv aldrig df['col1'].str.contains(df['col2']).
     Svara alltid i formatet:
