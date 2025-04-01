@@ -98,10 +98,11 @@ with st.sidebar.expander("AI-fråga till datan"):
         Fråga: {user_question}
         """
         try:
-            response = openai.ChatCompletion.create(
-                model="gpt-4",
-                messages=[{"role": "user", "content": prompt}],
-                temperature=0
+            response = openai.Completion.create(
+                   model="gpt-4",
+                prompt=prompt,
+                temperature=0,
+                max_tokens=500  # Anpassa som du vill
             )
             code = response.choices[0].message.content.strip()
             st.code(code, language='python')
