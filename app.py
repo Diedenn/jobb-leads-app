@@ -108,8 +108,9 @@ with st.sidebar.expander("AI-fråga till datan"):
     user_question = st.text_area("Din fråga:")
     if user_question:
         prompt = f"""
-        Kolumnerna i datan är: region, working_hours_type, kund, telefon, headline, description, kontakt_namn, kontakt_titel.
-        Skapa ett Python-uttryck för att filtrera DataFrame df enligt frågan:
+        Du får en pandas DataFrame som heter df med följande kolumner: region, working_hours_type, kund, telefon, headline, description, kontakt_namn, kontakt_titel.
+        Svara endast med ett filteruttryck, t.ex. (df['region'] == 'Stockholm') & (df['headline'].str.contains('elektriker')) osv.
+        Inkludera inte "df =" eller någon annan förklaring. Returnera endast uttrycket.
 
         Fråga: {user_question}
         """
@@ -123,9 +124,9 @@ with st.sidebar.expander("AI-fråga till datan"):
                 temperature=0
             )
             code = response.choices[0].message.content.strip()
-            st.code(code, language='python')
+            st.code("df = df[" + code + "]", language='python')
             with st.spinner("Kör GPT-filter..."):
-                df = eval(code)
+                df = df[eval(code)]
         except Exception as e:
             st.error(f"Fel vid GPT-tolkning: {e}")
 
