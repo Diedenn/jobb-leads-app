@@ -22,6 +22,15 @@ jobs_df.columns = jobs_df.columns.str.lower()
 kund_team.columns = kund_team.columns.str.strip().str.lower()
 kund_master.columns = kund_master.columns.str.strip().str.lower()
 
+# --- Döp om kolumner för enhetlighet ---
+kund_team = kund_team.rename(columns={
+    "org. nr (standardf\u00e4lt)": "orgnr",
+    "kontoansvarig": "saljare"
+})
+kund_master = kund_master.rename(columns={
+    "customer_organization_number": "orgnr"
+})
+
 # --- Säljare att välja mellan ---
 saljare_lista = kund_team['saljare'].dropna().unique().tolist()
 val_saljare = st.sidebar.selectbox("\ud83d\udcbc Välj säljare (filtrerar kundlistan)", saljare_lista)
