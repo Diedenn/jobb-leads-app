@@ -118,7 +118,6 @@ if job_title_query:
     df = df[
         df['headline'].str.contains(job_title_query, case=False, na=False) |
         df['description.text'].str.contains(job_title_query, case=False, na=False) |
-        df['occupation_group.label'].str.contains(job_title_query, case=False, na=False) |
         df['occupation.label'].str.contains(job_title_query, case=False, na=False)
     ]
 if require_phone:
