@@ -147,7 +147,7 @@ kund_team['orgnr'] = kund_team['orgnr'].str.replace(r'[^0-9]', '', regex=True)
 kund_master['orgnr'] = kund_master['orgnr'].str.replace(r'[^0-9]', '', regex=True)
 
 # --- Förbered kolumner ---
-jobs_df.columns = jobs_df.columns.str.lower()
+jobs_df.columns = [str(col).lower() for col in jobs_df.columns]
 
 if st.sidebar.checkbox("Visa tillgängliga kolumner (debug)"):
     st.write(jobs_df.columns.tolist())
