@@ -3,7 +3,7 @@ import pandas as pd
 import re
 import hashlib
 from io import BytesIO
-import openai
+from openai import OpenAI
 import os
 
 st.set_page_config(page_title="Jobbmatchning", layout="wide")
@@ -11,7 +11,7 @@ st.set_page_config(page_title="Jobbmatchning", layout="wide")
 # --- Enkel lösenordsskydd ---
 def check_password():
     def password_entered():
-        if st.session_state["password"] == st.secrets["app_password"]:
+        if hashlib.sha256(st.session_state["password"].encode()).hexdigest() == st.secrets["app_password"]:
             st.session_state["password_correct"] = True
             del st.session_state["password"]
         else:
@@ -28,7 +28,7 @@ check_password()
 
 st.title("Jobbmatchning & Leadsanalys")
 
-openai.api_key = st.secrets["OPENAI_API_KEY"]
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 # --- Läs in data ---
 jobs_excel = pd.ExcelFile("data/jobbdata.xlsx")
@@ -113,13 +113,13 @@ with st.sidebar.expander("AI-fråga till datan"):
     user_question = st.text_area("Din fråga:")
     if user_question:
         prompt = f"""
-        Kolumnerna i datan är: region, working_hours_type, kund, telefon, headline.
+        Kolumnerna i datan är: region, working_hours_type, kund, telefon, headline, description, kontakt_namn, kontakt_titel.
         Skapa ett Python-uttryck för att filtrera DataFrame df enligt frågan:
 
         Fråga: {user_question}
         """
         try:
-            response = openai.ChatCompletion.create(
+            response = client.chat.completions.create(
                 model="gpt-4",
                 messages=[
                     {"role": "system", "content": "Du är en assistent som hjälper till att filtrera en pandas DataFrame."},
@@ -127,7 +127,7 @@ with st.sidebar.expander("AI-fråga till datan"):
                 ],
                 temperature=0
             )
-            code = response['choices'][0]['message']['content'].strip()
+            code = response.choices[0].message.content.strip()
             st.code(code, language='python')
             with st.spinner("Kör GPT-filter..."):
                 df = eval(code)
