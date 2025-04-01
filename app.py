@@ -1,18 +1,38 @@
 import streamlit as st
 import pandas as pd
 import re
+import hashlib
 from io import BytesIO
 import openai
 import os
 
 st.set_page_config(page_title="Jobbmatchning", layout="wide")
+
+# --- Enkel lösenordsskydd ---
+def check_password():
+    def password_entered():
+        if hashlib.sha256(st.session_state["password"].encode()).hexdigest() == st.secrets["app_password"]:
+            st.session_state["password_correct"] = True
+            del st.session_state["password"]
+        else:
+            st.session_state["password_correct"] = False
+
+    if "password_correct" not in st.session_state:
+        st.text_input("Lösenord", type="password", on_change=password_entered, key="password")
+        st.stop()
+    elif not st.session_state["password_correct"]:
+        st.error("Fel lösenord")
+        st.stop()
+
+check_password()
+
 st.title("Jobbmatchning & Leadsanalys")
 
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 # --- Läs in data ---
 jobs_excel = pd.ExcelFile("data/jobbdata.xlsx")
-jobs_df = jobs_excel.parse(jobs_excel.sheet_names[0])
+jobs_df = jobs_excel.parse("jobbdata")
 
 kund_team = pd.read_csv("data/kundlista_team.csv", sep=';', dtype=str)
 kund_master = pd.read_csv("data/kundlista_master.csv", sep=';', dtype=str)
@@ -78,7 +98,9 @@ if require_phone:
 if exclude_union:
     df = df[~df['description'].str.contains("fack|unionen|saco|förbund", case=False, na=False)]
 if kundval == "Endast mina kunder":
-    df = df[df['kund']]  # Endast de jobb som matchar den valda kunden
+    df = df[df['kund'] == True]
+if only_non_customers:
+    df = df[~df['kund']]
 
 # --- GPT-fråga ---
 with st.sidebar.expander("AI-fråga till datan"):
@@ -91,31 +113,26 @@ with st.sidebar.expander("AI-fråga till datan"):
     user_question = st.text_area("Din fråga:")
     if user_question:
         prompt = f"""
-        Du är en assistent som hjälper till att filtrera en pandas DataFrame.
-        Kolumnerna i datan är: region, working_hours_type, kund, telefon, headline, description, kontakt_namn, kontakt_titel.
+        Kolumnerna i datan är: region, working_hours_type, kund, telefon, headline.
         Skapa ett Python-uttryck för att filtrera DataFrame df enligt frågan:
 
         Fråga: {user_question}
         """
-       # Fråga till GPT
-try:
-    response = openai.Completion.create(
-        model="gpt-4",
-        prompt=prompt,
-        temperature=0,
-        max_tokens=500  # Anpassa som du vill
-    )
-    # Uppdaterad metod för att hämta svaret
-    code = response['choices'][0]['message']['content'].strip()
-
-    st.code(code, language='python')
-    
-    with st.spinner("Kör GPT-filter..."):
-        df = eval(code)
-        
-except Exception as e:
-    st.error(f"Fel vid GPT-tolkning: {e}")
-
+        try:
+            response = openai.ChatCompletion.create(
+                model="gpt-4",
+                messages=[
+                    {"role": "system", "content": "Du är en assistent som hjälper till att filtrera en pandas DataFrame."},
+                    {"role": "user", "content": prompt}
+                ],
+                temperature=0
+            )
+            code = response['choices'][0]['message']['content'].strip()
+            st.code(code, language='python')
+            with st.spinner("Kör GPT-filter..."):
+                df = eval(code)
+        except Exception as e:
+            st.error(f"Fel vid GPT-tolkning: {e}")
 
 # --- Visa resultat ---
 st.subheader(f"Resultat: {len(df)} annonser")
