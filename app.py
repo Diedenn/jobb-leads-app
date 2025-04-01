@@ -13,7 +13,7 @@ openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 # --- Läs datafiler automatiskt (dessa ska ligga i 'data/' i repot) ---
 jobs_excel = pd.ExcelFile("data/jobbdata.xlsx")
-jobs_df = jobs_excel.parse("Non-Customer Jobs")
+jobs_df = jobs_excel.parse(jobs_excel.sheet_names[0])
 
 kund_team = pd.read_csv("data/kundlista_team.csv", dtype=str)
 kund_master = pd.read_csv("data/kundlista_master.csv", dtype=str)
