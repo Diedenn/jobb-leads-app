@@ -31,6 +31,11 @@ kund_master = kund_master.rename(columns={
     "customer_organization_number": "orgnr"
 })
 
+# --- Standardisera orgnr-format (endast siffror) ---
+kund_team['orgnr'] = kund_team['orgnr'].str.replace(r'[^0-9]', '', regex=True)
+kund_master['orgnr'] = kund_master['orgnr'].str.replace(r'[^0-9]', '', regex=True)
+jobs_df['employer_organization_number'] = jobs_df['employer_organization_number'].astype(str).str.replace(r'[^0-9]', '', regex=True)
+
 # --- Val av kundlista ---
 kundval = st.sidebar.radio("Filtrera mot:", ["Endast mina kunder", "Hela bolaget"])
 
@@ -51,8 +56,8 @@ exclude_union = st.sidebar.checkbox("Exkludera fackliga kontakter")
 only_non_customers = st.sidebar.checkbox("Visa endast nya leads")
 
 # --- Matchning ---
-jobs_df['orgnr'] = jobs_df['employer_organization_number'].astype(str)
-aktiv_kundlista['orgnr'] = aktiv_kundlista['orgnr'].astype(str)
+jobs_df['orgnr'] = jobs_df['employer_organization_number']
+aktiv_kundlista['orgnr'] = aktiv_kundlista['orgnr']
 jobs_df['kund'] = jobs_df['orgnr'].isin(aktiv_kundlista['orgnr'])
 
 # --- Extrahera kontaktuppgifter ---
