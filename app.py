@@ -24,7 +24,7 @@ kund_master.columns = kund_master.columns.str.strip().str.lower()
 
 # --- Döp om kolumner för enhetlighet ---
 kund_team = kund_team.rename(columns={
-    "org. nr (standardf\u00e4lt)": "orgnr",
+    "org. nr (standardfält)": "orgnr",
     "kontoansvarig": "saljare"
 })
 kund_master = kund_master.rename(columns={
@@ -33,11 +33,11 @@ kund_master = kund_master.rename(columns={
 
 # --- Säljare att välja mellan ---
 saljare_lista = kund_team['saljare'].dropna().unique().tolist()
-val_saljare = st.sidebar.selectbox("\ud83d\udcbc Välj säljare (filtrerar kundlistan)", saljare_lista)
+val_saljare = st.sidebar.selectbox("Välj säljare (filtrerar kundlistan)", saljare_lista)
 filtrerad_teamlista = kund_team[kund_team['saljare'] == val_saljare]
 
 # --- Val av kundlista ---
-kundval = st.sidebar.radio("\ud83d\udc65 Filtrera mot:", ["Endast mina kunder", "Hela bolaget"])
+kundval = st.sidebar.radio("Filtrera mot:", ["Endast mina kunder", "Hela bolaget"])
 aktiv_kundlista = filtrerad_teamlista if kundval == "Endast mina kunder" else kund_master
 
 # --- Sidofilter ---
@@ -67,20 +67,20 @@ if job_title_query:
 if require_phone:
     df = df[df['telefon'].notnull()]
 if exclude_union:
-    df = df[~df['description'].str.contains("fack|unionen|saco|f\u00f6rbund", case=False, na=False)]
+    df = df[~df['description'].str.contains("fack|unionen|saco|förbund", case=False, na=False)]
 if only_non_customers:
     df = df[~df['kund']]
 
 # --- GPT-fråga ---
-with st.sidebar.expander("\ud83e\udd16 AI-fråga till datan"):
+with st.sidebar.expander("AI-fråga till datan"):
     user_question = st.text_area("Din fråga:")
     if user_question:
         prompt = f"""
         Du är en assistent som hjälper till att filtrera en pandas DataFrame.
         Kolumnerna i datan är: region, working_hours_type, kund, telefon, headline.
-        Skapa ett Python-uttryck f\u00f6r att filtrera DataFrame df enligt fr\u00e5gan:
+        Skapa ett Python-uttryck för att filtrera DataFrame df enligt frågan:
 
-        Fr\u00e5ga: {user_question}
+        Fråga: {user_question}
         """
         try:
             response = openai.ChatCompletion.create(
@@ -90,7 +90,7 @@ with st.sidebar.expander("\ud83e\udd16 AI-fråga till datan"):
             )
             code = response.choices[0].message.content.strip()
             st.code(code, language='python')
-            with st.spinner("K\u00f6r GPT-filter..."):
+            with st.spinner("Kör GPT-filter..."):
                 df = eval(code)
         except Exception as e:
             st.error(f"Fel vid GPT-tolkning: {e}")
@@ -108,7 +108,7 @@ def to_excel_bytes(df):
 
 excel_bytes = to_excel_bytes(df)
 st.download_button(
-    label="\ud83d\uddc3\ufe0f Ladda ner resultat som Excel",
+    label="Ladda ner resultat som Excel",
     data=excel_bytes,
     file_name="filtrerat_resultat.xlsx",
     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
