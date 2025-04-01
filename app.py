@@ -85,14 +85,19 @@ kund_master['orgnr'] = kund_master['orgnr'].str.replace(r'[^0-9]', '', regex=Tru
 
 # --- Förbered kolumner ---
 jobs_df.columns = jobs_df.columns.str.lower()
-jobs_df['orgnr'] = jobs_df['employer.organization_number'].astype(str).str.replace(r'[^0-9]', '', regex=True)
-jobs_df['description'] = jobs_df['description.text']
-jobs_df['headline'] = jobs_df['headline']
-jobs_df['region'] = jobs_df['workplace_address.region']
-jobs_df['occupation'] = jobs_df['occupation.label']
-jobs_df['occupation_group'] = jobs_df['occupation_group.label']
-jobs_df['employer_name'] = jobs_df['employer.name']
-jobs_df['working_hours_type'] = jobs_df['working_time_extent.label']
+
+# Visa tillgängliga kolumner vid behov
+if st.sidebar.checkbox("Visa tillgängliga kolumner (debug)"):
+    st.write(jobs_df.columns.tolist())
+
+jobs_df['orgnr'] = jobs_df.get('employer.organization_number', pd.NA).astype(str).str.replace(r'[^0-9]', '', regex=True)
+jobs_df['description'] = jobs_df.get('description.text', pd.NA)
+jobs_df['headline'] = jobs_df.get('headline', pd.NA)
+jobs_df['region'] = jobs_df.get('workplace_address.region', pd.NA)
+jobs_df['occupation'] = jobs_df.get('occupation.label', pd.NA)
+jobs_df['occupation_group'] = jobs_df.get('occupation_group.label', pd.NA)
+jobs_df['employer_name'] = jobs_df.get('employer.name', pd.NA)
+jobs_df['working_hours_type'] = jobs_df.get('working_time_extent.label', pd.NA)
 
 # --- Matchning ---
 val_saljare = st.sidebar.selectbox("Filtrera på säljare (valfritt)", ["Visa alla"] + sorted(kund_team['saljare'].dropna().unique().tolist()))
