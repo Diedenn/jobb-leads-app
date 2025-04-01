@@ -92,7 +92,7 @@ jobs_df['region'] = jobs_df['workplace_address.region']
 jobs_df['occupation'] = jobs_df['occupation.label']
 jobs_df['occupation_group'] = jobs_df['occupation_group.label']
 jobs_df['employer_name'] = jobs_df['employer.name']
-jobs_df['working_hours_type'] = jobs_df['working_hours_type']
+jobs_df['working_hours_type'] = jobs_df['working_time_extent.label']
 
 # --- Matchning ---
 val_saljare = st.sidebar.selectbox("Filtrera på säljare (valfritt)", ["Visa alla"] + sorted(kund_team['saljare'].dropna().unique().tolist()))
