@@ -1,0 +1,501 @@
+﻿;Org. nr (Standardfält);Företagsnamn;Kontoansvarig
+1;;Canon Bussines Center - Lkpg;Filip Mbanza
+2;;AFRY - Örnsköldsvik;Anton Fellbrink
+3;;Vallagruppen AS;Filip Mbanza
+4;;Handelsbanken Malmö City;Filip Mbanza
+5;;Handelsbanken Norrköping;Filip Mbanza
+6;;Transtema Kalmar;Filip Mbanza
+7;;Transtema Jönköping;Filip Mbanza
+8;;Elektrobyrån Bankeryd;Filip Mbanza
+9;;Swedbank Norrköping;Filip Mbanza
+10;;Härnösands Billack AB;Anton Fellbrink
+11;;Vattenfall Services Nordic AB - Nkpg;Filip Mbanza
+12;;Ragn-Sells AB;Anton Fellbrink
+13;;Ramirent AB Hörnösand;Anton Fellbrink
+14;;AFRY - Nyköping;Filip Mbanza
+15;;Gärdin & Persson AB;Anton Fellbrink
+16;;Bravida Gävle;Anton Fellbrink
+17;0616787-2;Paf Ålands Penningautomatförening;Filip Mbanza
+18;202100-4284;Svenska Kraftnät;Anton Fellbrink
+19;2021004730;Försvarshögskolan;Filip Mbanza
+20;2120001967;Örebro kommun;Peter Bengtsson
+21;2220001487;Samhällsbyggnadsförbundet Bergslagen;Peter Bengtsson
+22;5020077862;Svenska Handelsbanken AB;Peter Bengtsson
+23;5020077862;Svenska Handelsbanken AB;Filip Mbanza
+24;502017-7753;Swedbank AB Sundsvall;Anton Fellbrink
+25;5020173083;Försäkringsaktiebolaget Skandia (publ);Anton Fellbrink
+26;5020177753;Swedbank AB Östersund;Anton Fellbrink
+27;5164019738;Skandiabanken Aktiebolag (publ) - Kundtjänstkontor;Filip Mbanza
+28;5164019738;Skandiabanken Aktiebolag (publ);Emil Fransson
+29;5164019811;DANSKE BANK A/S, DANMARK,SVERIGE FILIAL;Filip Mbanza
+30;5164025073;Mitsubishi Electric Europe B.V. (Holland) Filial;Peter Bengtsson
+31;5164036450;Aidon Sverige filial till Aidon Oy, Finland;Emil Fransson
+32;5164038662;Trygg-Hansa Försäkring Filial;Emil Fransson
+33;516406-0120;Nordea Bank AB - Sundsvall;Anton Fellbrink
+34;5560005331;Husqvarna AB;Filip Mbanza
+35;5560011842;Voith Paper Fabrics Högsjö AB - Säljkontor;Peter Bengtsson
+36;5560013251;Lesjöfors Aktiebolag;Peter Bengtsson
+37;5560016064;Jämtkraft Aktiebolag;Anton Fellbrink
+38;5560018748;Outokumpu Stainless AB;Peter Bengtsson
+39;556003-2921;Siemens AB;Anton Fellbrink
+40;5560087453;Finnvedens Bil AB;Peter Bengtsson
+41;5560125220;Beijer Byggmaterial Aktiebolag;Peter Bengtsson
+42;5560126293;Svenska Cellulosa Aktiebolaget SCA;Anton Fellbrink
+43;5560128661;Stora Enso Fors Aktiebolag;Peter Bengtsson
+44;5560134628;Assemblin El AB;Filip Mbanza
+45;5560138983;Nouryon Surface Chemistry AB - Stockviksfabriken;Anton Fellbrink
+46;556014-8412;Elektroskandia Sverige AB - Nkpg;Filip Mbanza
+47;5560145418;Cargotec Sweden Aktiebolag;Emil Fransson
+48;5560148412;Elektroskandia Sverige AB;Anton Fellbrink
+49;5560148412;Elektroskandia Sverige AB;Emil Fransson
+50;5560163429;SSAB AB;Peter Bengtsson
+51;5560163429;Ssab AB;Peter Bengtsson
+52;5560185570;DLP Drinks Logistics Partner AB;Emil Fransson
+53;5560215286;Microtec AB;Filip Mbanza
+54;5560219338;Volvo Construction Equipment AB;Peter Bengtsson
+55;5560229972;Nouryon Pulp and Performance Chemicals AB - Albyfabrikerna;Anton Fellbrink
+56;5560238338;Billerud Skog & Industri Aktiebolag;Peter Bengtsson
+57;5560247594;Swarco Sverige AB;Emil Fransson
+58;5560255001;Billerud Aktiebolag (publ);Peter Bengtsson
+59;5560263120;Uniper/Sydkraft Hydropower AB (KARLSHAMNSVERKET ÖRESUNDSKRAFT;Anton Fellbrink
+60;5560296740;Öhrlings PricewaterhouseCoopers AB;Emil Fransson
+61;5560297029;Hitachi Energy Sweden AB - Ludvika & Smedjebacken;Peter Bengtsson
+62;5560302886;Suzuki Garphyttan AB;Peter Bengtsson
+63;5560329285;Anticimex Aktiebolag;Anton Fellbrink
+64;5560345174;NCC Aktiebolag;Emil Fransson
+65;5560355009;Kongsberg Maritime Sweden AB;Peter Bengtsson
+66;5560360793;Saab Aktiebolag;Emil Fransson
+67;5560360793;SAAB Aktiebolag;Filip Mbanza
+68;5560362138;Vattenfall AB - Sundsvall;Anton Fellbrink
+69;5560362138;Vattenfall AB (Linköping);Filip Mbanza
+70;5560384090;Norwesco Aktiebolag;Emil Fransson
+71;5560392838;Björka Mineral AB;Peter Bengtsson
+72;5560394032;MSI-EL Motala Ströms Installation AB;Filip Mbanza
+73;5560412149;Epiroc Aktiebolag;Peter Bengtsson
+74;5560441767;MEKANA MASKIN AB;Peter Bengtsson
+75;5560450990;Jaco Fabriks Aktiebolag;Emil Fransson
+76;5560462755;Uddeholms AB;Peter Bengtsson
+77;5560483629;Sigma Polymer Group AB;Peter Bengtsson
+78;5560510272;Rejlers Sverige AB;Emil Fransson
+79;5560510272;Rejlers Sverige AB;Filip Mbanza
+80;5560510272;Rejlers Sverige AB;Filip Mbanza
+81;556052-8753;Caverion Sverige AB;Anton Fellbrink
+82;5560520263;Frigoscandia AB;Filip Mbanza
+83;5560523903;Danfoss Aktiebolag;Filip Mbanza
+84;5560528753;Caverion Sverige AB;Filip Mbanza
+85;5560536194;Assemblin VS AB - Filialkontor;Filip Mbanza
+86;5560543885;Malte Månson Verkstäder AB;Peter Bengtsson
+87;5560556515;Finnvedens Lastvagnar AB;Peter Bengtsson
+88;5560563941;Helmia Bil Aktiebolag;Peter Bengtsson
+89;5560566258;Ericsson AB;Emil Fransson
+90;556057-4880;WSP Sverige AB - Lkpg;Filip Mbanza
+91;5560573452;Ragn-Sells Recycling AB - Örebro;Peter Bengtsson
+92;5560573452;Ragn-Sells Recycling AB - Karlstad Grums Forshaga Kil Hammarö;Peter Bengtsson
+93;5560573452;Ragn-Sells Recycling AB;Emil Fransson
+94;5560576968;Tage Rejmes Lastvagnar Aktiebolag;Filip Mbanza
+95;5560577545;Atteviks Lastbilar AB;Peter Bengtsson
+96;5560579624;Atria Sverige AB;Peter Bengtsson
+97;5560579624;Atria Sverige AB;Peter Bengtsson
+98;5560589094;ALSTOM Transport AB;Emil Fransson
+99;5560602632;Holger Andreasen Aktiebolag;Peter Bengtsson
+100;556061-8596;Tage Rejmes i Linköping Bil AB;Filip Mbanza
+101;5560613670;Rotork Sweden AB;Peter Bengtsson
+102;5560614462;Moelven Edanesågen Aktiebolag;Peter Bengtsson
+103;5560627613;H. Folke Sandelin Aktiebolag;Filip Mbanza
+104;5560630559;Skandinaviska Buss & Truck AB;Peter Bengtsson
+105;5560635244;Lesjöfors Fjädrar Aktiebolag;Peter Bengtsson
+106;5560659590;Kongsberg Power Products Systems AB - Huvudkontor och Fabrik;Peter Bengtsson
+107;5560688557;Nordhydraulic AB;Anton Fellbrink
+108;5560689738;Svensk Cater AB;Emil Fransson
+109;5560709429;Oxelö Energi Aktiebolag;Filip Mbanza
+110;556071-1060;Seco Tools Aktiebolag;Peter Bengtsson
+111;5560718446;Bröderna Wallströms Tryckeriaktiebolag;Anton Fellbrink
+112;556073-3114;Werksta Sundsvall;Anton Fellbrink
+113;5560733114;Werksta Sweden AB - Örebro Bettorp;Peter Bengtsson
+114;5560743311;UMV Coating Systems Aktiebolag;Peter Bengtsson
+115;5560757287;One Nordic AB;Anton Fellbrink
+116;5560757287;One Nordic AB;Filip Mbanza
+117;5560760737;Stanley Security Sverige AB;Emil Fransson
+118;5560760836;Engströms Bil AB;Filip Mbanza
+119;5560766403;Asfaltsgruppen Öst AB;Filip Mbanza
+120;5560769175;Press Kogyo Sweden AB;Peter Bengtsson
+121;5560786500;Euromaster Aktiebolag;Anton Fellbrink
+122;5560786682;Aktiebolaget Somas, Ventiler;Peter Bengtsson
+123;5560786708;Pågen Aktiebolag;Peter Bengtsson
+124;5560795030;Öhlins Racing Aktiebolag;Emil Fransson
+125;5560796871;Spendrups Bryggeriaktiebolag - Bryggeri Grängesberg;Peter Bengtsson
+126;556080-0210;Element Metech AB;Filip Mbanza
+127;5560800210;Element Metech AB - Mätinstrument;Filip Mbanza
+128;5560801937;Titanx Engine Cooling AB;Filip Mbanza
+129;5560801937;TitanX Engine Cooling AB;Peter Bengtsson
+130;5560813031;Swerock Aktiebolag;Filip Mbanza
+131;556084-6783;Coor Service Management Östersund;Anton Fellbrink
+132;5560840976;Scania CV Aktiebolag;Emil Fransson
+133;5560895665;NLF, Nora-Lindefrakt Aktiebolag;Peter Bengtsson
+134;5560906033;Zenita Aktiebolag;Filip Mbanza
+135;5560909037;Skanska Rental AB;Anton Fellbrink
+136;5560910431;Bengt Dahlgren Linköping AB;Filip Mbanza
+137;5560925314;LAPP Miltronic AB;Filip Mbanza
+138;5560925314;LAPP Muller;Filip Mbanza
+139;5560967530;Nordic Truck Bodies Service AB;Peter Bengtsson
+140;5560970187;Element Materials Technology AB;Filip Mbanza
+141;5560999202;Peab Sverige AB;Peter Bengtsson
+142;5560999228;Fergin Sverige AB;Filip Mbanza
+143;556100-1008;Elektroautomatik i Sverige AB;Emil Fransson
+144;5561030437;Dhl Freight (Sweden) AB;Filip Mbanza
+145;5561032763;Polyamp Aktiebolag;Filip Mbanza
+146;5561034181;TEKO - Sveriges Textil och Modeföretag Service AB;Emil Fransson
+147;556104-3539;Cramo AB - Nkpg;Filip Mbanza
+148;5561043265;Energiföretagen Sverige - Swedenergy - AB - Region Väst;Peter Bengtsson
+149;5561043539;Cramo AB;Anton Fellbrink
+150;5561043539;Cramo AB;Emil Fransson
+151;5561079079;Lenze AB;Filip Mbanza
+152;556108-6082;Securitas Sverige AB;Anton Fellbrink
+153;5561081919;Cytiva Sweden AB;Emil Fransson
+154;5561125690;Bilia AB;Emil Fransson
+155;5561129742;Siba Aktiebolag;Anton Fellbrink
+156;5561135848;Fleximark Aktiebolag;Filip Mbanza
+157;5561142810;Veolia Recycling Solutions Sweden AB;Anton Fellbrink
+158;5561149138;Mondi Dynäs Aktiebolag;Anton Fellbrink
+159;5561156372;Lundgrens El-installationer Vikbolandet-Norrköping Aktiebolag;Filip Mbanza
+160;5561166439;Burkert Sweden AB - Försäljning & Teknisk Support;Emil Fransson
+161;5561184614;Moelven Dalaträ Aktiebolag;Peter Bengtsson
+162;5561206474;AFRY AB Sundsvall;Anton Fellbrink
+163;5561206474;AFRY AB;Peter Bengtsson
+164;5561206474;AFRY AB - Linköping;Filip Mbanza
+165;5561206474;AFRY AB - Stockholm;Emil Fransson
+166;5561206474;AFRY - Jkpg;Filip Mbanza
+167;5561226506;Car-O-Liner Commercial AB;Peter Bengtsson
+168;5561239210;KNAPP AB;Peter Bengtsson
+169;5561312223;CAB Group AB;Peter Bengtsson
+170;5561331637;Smiling Faces AB;Emil Fransson
+171;5561342204;Beyond Gravity Sweden AB;Filip Mbanza
+172;5561342964;Guldfågeln Aktiebolag;Peter Bengtsson
+173;556138-3646;Schneider Electric Distribution Centre AB;Peter Bengtsson
+174;5561389668;Miele Aktiebolag;Emil Fransson
+175;556139-3884;Elajo El & Energiteknik AB - Lkpg;Filip Mbanza
+176;5561393884;Elajo El & Energiteknik AB;Peter Bengtsson
+177;5561394411;EWAB Engineering Aktiebolag;Filip Mbanza
+178;5561422394;Roslagsvatten Aktiebolag;Emil Fransson
+179;5561475897;Fujitsu Sweden AB;Anton Fellbrink
+180;5561509638;Mellannorrlands Transport Aktiebolag;Anton Fellbrink
+181;5561532176;Verisure Sverige AB;Filip Mbanza
+182;5561538389;ENA Energi AB;Emil Fransson
+183;556158-1249;AFRY - Nkpg;Filip Mbanza
+184;5561604108;Systemair Aktiebolag;Peter Bengtsson
+185;5561679720;Eways AB;Emil Fransson
+186;5561723593;AB Byggbeslag Lås & Säkerhet;Anton Fellbrink
+187;5561723593;AB Byggbeslag Lås & Säkerhet - Sätra;Emil Fransson
+188;5561725796;Rörgruppen AB;Emil Fransson
+189;5561733360;Stora Enso AB;Peter Bengtsson
+190;5561769513;ebm-papst AB;Emil Fransson
+191;5561790717;AGES Casting Unnaryd AB + Koncernbolag;Peter Bengtsson
+192;5561808675;Lann Industries Sweden AB;Peter Bengtsson
+193;556185-6385;Feelgood Företagshälsa Sundsvall;Anton Fellbrink
+194;5561877795;Tiger of Sweden Aktiebolag;Emil Fransson
+195;5561901637;Lambertsson Sverige AB;Emil Fransson
+196;5561906834;Tetra Pak Packaging Material Sunne Aktiebolag;Peter Bengtsson
+197;5561906834;Tetra Pak Packaging Material Sunne Aktiebolag;Peter Bengtsson
+198;5561924555;Vtg Entreprenad AB;Anton Fellbrink
+199;5561945733;ArcelorMittal Construction Sverige AB;Peter Bengtsson
+200;5561962308;El & PC-Installationer i Örebro Aktiebolag;Peter Bengtsson
+201;5561974188;Bravida AB Sundsvall;Anton Fellbrink
+202;5561974188;Bravida Sverige AB;Filip Mbanza
+203;5561974188;Bravida Sverige AB;Emil Fransson
+204;5561974188;Bravida Sverige AB;Emil Fransson
+205;556198-2652;SSI Schäfer System International AB;Filip Mbanza
+206;556198-2868;Toyota Material Handling Manufacturing Sweden AB;Filip Mbanza
+207;5561994533;Kinnarps;Filip Mbanza
+208;5562015262;Mekka Traffic Aktiebolag;Peter Bengtsson
+209;5562032259;Schlötter Svenska Aktiebolag;Filip Mbanza
+210;5562041904;BAE Systems Bofors AB;Peter Bengtsson
+211;5562041904;Bae Systems Bofors AB;Peter Bengtsson
+212;5562061324;Hydac AB;Emil Fransson
+213;5562065119;ProfilGruppen Extrusions AB;Peter Bengtsson
+214;5562074376;Harting Aktiebolag;Emil Fransson
+215;5562075225;Servicoating AB;Filip Mbanza
+216;5562080936;AGES Hörle AB;Peter Bengtsson
+217;556209-9001;INFICON AB;Filip Mbanza
+218;5562092634;AQ Components Mjällom AB;Anton Fellbrink
+219;5562099316;CJ Automotive AB;Peter Bengtsson
+220;5562101567;Defa AB;Emil Fransson
+221;5562104124;Atteviks Bil AB;Peter Bengtsson
+222;5562106079;JL Nybergs Mekaniska Aktiebolag;Anton Fellbrink
+223;5562119627;Omicron Ceti Aktiebolag;Emil Fransson
+224;5562127729;Dametric Aktiebolag;Emil Fransson
+225;5562145713;EUROPROFIL AB;Peter Bengtsson
+226;5562149996;Advania Sverige AB;Emil Fransson
+227;5562153089;Zone Systems AB;Filip Mbanza
+228;5562159177;Moelven Årjäng Såg Aktiebolag;Peter Bengtsson
+229;5562171636;Moelven Notnäs Ransby AB;Peter Bengtsson
+230;5562176064;Ingelsta Kalkon AB;Peter Bengtsson
+231;5562182476;Vepro Verkstadsproduktion AB;Anton Fellbrink
+232;5562186790;Combitech Aktiebolag;Filip Mbanza
+233;5562194679;SUND BIRSTA Aktiebolag;Anton Fellbrink
+234;5562196120;Borghamnsten Aktiebolag;Filip Mbanza
+235;5562197664;Somas Instrument Aktiebolag;Peter Bengtsson
+236;5562221068;A Society AB (Scania);Emil Fransson
+237;5562242221;Dinair AB;Filip Mbanza
+238;5562246107;Scanditronix Magnet Aktiebolag;Emil Fransson
+239;5562318492;Mimer Information Technology AB;Emil Fransson
+240;5562332451;Martin & Servera Aktiebolag;Filip Mbanza
+241;5562373877;Tietoevry Tech Services Sweden AB - Örebro;Peter Bengtsson
+242;5562380302;Orkla Foods Sverige AB;Peter Bengtsson
+243;5562380302;Orkla Foods Sverige AB;Peter Bengtsson
+244;5562417559;If Skadeförsäkring Holding AB (publ);Emil Fransson
+245;5562429448;Frauenthal Gnotec Sweden AB;Peter Bengtsson
+246;5562441781;Länsförsäkringar Hypotek AB (publ);Emil Fransson
+247;5562515170;B. Braun Medical Aktiebolag;Emil Fransson
+248;5562524644;Bedege AB;Emil Fransson
+249;5562536143;Axis Communications Aktiebolag;Filip Mbanza
+250;5562537513;SBAB Bank AB (publ) - Sbab Kundservice;Peter Bengtsson
+251;5562548452;Ingram Micro AB;Emil Fransson
+252;5562566579;FLIR Systems Aktiebolag;Emil Fransson
+253;5562591197;Nordiske Medier Stockholm AB;Emil Fransson
+254;5562608603;Maskinia Aktiebolag;Filip Mbanza
+255;5562610955;AQ Wiring Systems AB;Anton Fellbrink
+256;5562625862;Thurne Teknik Aktiebolag;Emil Fransson
+257;5562646074;Saab Dynamics Aktiebolag;Filip Mbanza
+258;5562670991;Inredningshuset i Sundsvall AB;Anton Fellbrink
+259;5562675164;Tele2 Sverige Aktiebolag;Peter Bengtsson
+260;5562675164;Tele2 Sverige Aktiebolag;Emil Fransson
+261;5562708072;Envirotainer AB;Emil Fransson
+262;5562710680;VIMAB Aktiebolag;Filip Mbanza
+263;5562712082;Ellagro Örebro AB;Peter Bengtsson
+264;5562728997;Semantix SpråkCentrum AB;Emil Fransson
+265;5562754761;One IT Partner AB;Filip Mbanza
+266;556280-1034;Grönsakshuset i Norden AB;Anton Fellbrink
+267;556280-7908;Coldman Försäljnings AB;Filip Mbanza
+268;5562802115;Rusta AB - Rusta Norrköping Lager;Filip Mbanza
+269;5562806264;Horns Industriservice Aktiebolag;Filip Mbanza
+270;5562814409;Kommuninvest i Sverige Aktiebolag;Peter Bengtsson
+271;5562821347;Roplan Sales AB;Anton Fellbrink
+272;5562842319;SOPRA STERIA SWEDEN AB;Anton Fellbrink
+273;5562886761;Mercur Solutions Aktiebolag;Emil Fransson
+274;5562907088;LÖFBERGS LILA AKTIEBOLAG;Peter Bengtsson
+275;5562913185;Addnode Group Aktiebolag (publ);Emil Fransson
+276;5562944594;SSE Sverige AB;Peter Bengtsson
+277;5562987510;Möller Bil Sverige AB;Peter Bengtsson
+278;5562987510;Möller Bil Sverige AB - Möller Bil Enköping;Peter Bengtsson
+279;5563005684;Pejo Aktiebolag;Filip Mbanza
+280;5563023315;Aktiebolaget Byggbeslag;Anton Fellbrink
+281;5563087773;Marine Jet Power AB;Emil Fransson
+282;5563094928;Aktiebolaget Stockholms Spårvägar;Emil Fransson
+283;5563098796;Sura Magnets Aktiebolag;Filip Mbanza
+284;5563104206;Moelven Valåsen Aktiebolag;Peter Bengtsson
+285;5563111540;Stenborgs Truck & Maskin AB;Emil Fransson
+286;5563119204;Wasa Kredit AB;Emil Fransson
+287;556314-9102;Aenigma AB;Emil Fransson
+288;5563172831;Creopack AB;Emil Fransson
+289;5563193217;Heda Security AB;Filip Mbanza
+290;5563204139;DP Patterning AB;Filip Mbanza
+291;5563274314;Omexom Sundsvall;Anton Fellbrink
+292;5563274314;Eitech Engineering AB / Omexom;Emil Fransson
+293;5563282754;Proact IT Sweden AB;Emil Fransson
+294;5563311801;Rödins Trä AB;Anton Fellbrink
+295;5563372191;CGI Sverige AB;Emil Fransson
+296;5563421493;Svets & Maskinteknik i Sundsvall Aktiebolag;Anton Fellbrink
+297;5563429199;Fortum Waste Solutions Holding AB;Peter Bengtsson
+298;5563466167;Askalon AB;Peter Bengtsson
+299;5563470540;Nordlo Stockholm City AB;Emil Fransson
+300;5563492262;Qstar Försäljning Aktiebolag;Filip Mbanza
+301;5563492262;Qstar Försäljning Aktiebolag;Filip Mbanza
+302;5563507028;Actia Nordic AB;Filip Mbanza
+303;5563512374;Mycronic AB (publ);Emil Fransson
+304;5563515914;Swedish Northcom AB;Emil Fransson
+305;5563585156;Sandahls Logistik AB;Anton Fellbrink
+306;5563618817;Abena AB;Filip Mbanza
+307;5563704260;Gullers Grupp AB;Emil Fransson
+308;5563723963;Sundsvalls Mekaniska Verkstad AB;Anton Fellbrink
+309;5563755478;Bjerking AB;Emil Fransson
+310;5563755478;Bjerking AB;Emil Fransson
+311;5563789568;Conscia Sverige AB;Emil Fransson
+312;5563825321;GeoFix Aktiebolag;Filip Mbanza
+313;5563841120;Börjessons Lastbilar Aktiebolag;Peter Bengtsson
+314;5563849198;Shape Process Automation EMEA AB;Peter Bengtsson
+315;5563881308;DISAB-TELLA Aktiebolag;Emil Fransson
+316;5563899763;Dellner Couplers Aktiebolag;Peter Bengtsson
+317;5563910354;Knowit Aktiebolag (publ);Emil Fransson
+318;5564044120;XLENT Aktiebolag;Anton Fellbrink
+319;556405-3964;Norconsult Sverige AB;Emil Fransson
+320;5564053964;Norconsult AB;Emil Fransson
+321;556408-5032;Getinge Sverige AB;Emil Fransson
+322;5564103280;Iss Facility Services AB;Peter Bengtsson
+323;5564155041;Swedsecur AB;Peter Bengtsson
+324;556417-0859;Vattenfall Services Nordic AB - Nyköping;Filip Mbanza
+325;5564170859;Vattenfall Services Nordic AB;Emil Fransson
+326;5564170859;Vattenfall Services Nordic AB - Östersund;Anton Fellbrink
+327;5564170859;Vattenfall Services Nordic AB - Sundsvall;Anton Fellbrink
+328;5564170859;Vattenfall Services Nordic AB - Sollefteå;Anton Fellbrink
+329;5564182300;Olsons Maskinservice Aktiebolag;Filip Mbanza
+330;5564183597;Domino Sweden AB;Filip Mbanza
+331;5564190857;Ica Maxi Special AB;Filip Mbanza
+332;5564206414;Werksta Sollefteå Hallstaberget AB;Anton Fellbrink
+333;5564233665;Marioff Skandinavien Aktiebolag;Emil Fransson
+334;5564268737;Roxx Communication Group AB;Filip Mbanza
+335;5564325867;RENTAV Städ och Miljövård Aktiebolag;Anton Fellbrink
+336;5564362985;Larm & Signalteknik i Östersund Aktiebolag;Anton Fellbrink
+337;5564363264;Nässjö Bilskadecenter Aktiebolag;Peter Bengtsson
+338;5564415098;Teracom AB;Anton Fellbrink
+339;5564424876;Renall AB;Peter Bengtsson
+340;5564429388;Stoneridge Electronics AB;Peter Bengtsson
+341;5564454345;Samsung Electronics Nordic Aktiebolag;Emil Fransson
+342;5564461472;Axema Access Control AB;Emil Fransson
+343;556448-0282;Atea Sverige AB - Lkpg;Filip Mbanza
+344;5564480282;Atea Sverige AB;Emil Fransson
+345;5564481397;Samhall Aktiebolag;Peter Bengtsson
+346;5564495397;LC-Tec Displays AB;Peter Bengtsson
+347;5564510260;Svenska Kraftnät Gasturbiner AB;Emil Fransson
+348;5564541315;Bravida Prenad AB;Peter Bengtsson
+349;5564625803;Mixum AB;Filip Mbanza
+350;5564632247;SICK AB;Emil Fransson
+351;5564661022;Access World Technic AB;Emil Fransson
+352;5564675998;ATS Kraftservice Aktiebolag - Huvudkontor;Emil Fransson
+353;5564683166;RZ ZamPart AB;Peter Bengtsson
+354;5564690732;Eitech Electro AB;Anton Fellbrink
+355;5564690732;Eitech Electro AB;Anton Fellbrink
+356;5564690732;Eitech Electro AB;Emil Fransson
+357;5564690732;Eitech Electro AB;Emil Fransson
+358;5564718301;Coca-Cola Europacific Partners Sverige AB;Emil Fransson
+359;5564721164;Craftor AB;Emil Fransson
+360;5564733102;Teknisk Fastighetsservice i Norrland Aktiebolag;Anton Fellbrink
+361;5564770237;Sharp Business Systems Sverige AB;Emil Fransson
+362;5564776853;Bilskadecenter i Örebro Aktiebolag;Peter Bengtsson
+363;556478-6647;Sundsvall Energi AB;Anton Fellbrink
+364;556479–1829;Avarn Security Systems AB;Filip Mbanza
+365;556479–1829;Avarn Security Systems AB;Filip Mbanza
+366;556479–1829;Avarn Security Systems AB;Filip Mbanza
+367;556479–1829;Avarn Security Systems AB;Filip Mbanza
+368;556479–1829;Avarn Security Systems AB;Filip Mbanza
+369;556479–1829;Avarn Security Systems AB;Filip Mbanza
+370;5564792058;SCA Graphic Holding Aktiebolag;Anton Fellbrink
+371;5564798493;Kopparbergs Bryggeri Aktiebolag;Peter Bengtsson
+372;5564815800;Haugen-Gruppen AB;Filip Mbanza
+373;5564815800;Haugen-Gruppen AB;Filip Mbanza
+374;5564824265;Maskincity i Motala Aktiebolag;Filip Mbanza
+375;5564854676;Foran Sverige Aktiebolag;Filip Mbanza
+376;5564873585;Cambio Healthcare Systems AB;Emil Fransson
+377;5564884640;Svensk Plaståtervinning i Motala AB;Filip Mbanza
+378;5564885720;Actil Warehouse Trucks AB;Filip Mbanza
+379;5564892924;Svea Bank AB;Emil Fransson
+380;5564928777;Specialkarosser Aktiebolag;Peter Bengtsson
+381;5564930666;Strongpoint AB;Emil Fransson
+382;5564937695;Karlskoga Automation Aktiebolag;Peter Bengtsson
+383;5564972056;AGES Värnamo AB;Peter Bengtsson
+384;5564989688;Swedfarm AB;Filip Mbanza
+385;5565002762;Landshypotek Bank Aktiebolag - Linköping;Filip Mbanza
+386;5565011227;San Sac AB;Filip Mbanza
+387;5565049607;VallaCom AB;Filip Mbanza
+388;556505–1413;Saferoad RRS Sverige AB;Emil Fransson
+389;5565065819;HiQ Stockholm AB;Emil Fransson
+390;556511-2991;Kesko AB;Anton Fellbrink
+391;556511-2991;Kesko AB;Emil Fransson
+392;5565112991;Kesko AB;Anton Fellbrink
+393;5565112991;Kesko AB;Emil Fransson
+394;5565141008;APP Start-Up Aktiebolag;Filip Mbanza
+395;5565165114;Real Time Services Aktiebolag;Emil Fransson
+396;5565165254;Orkla Confectionery & Snacks Sverige AB - Snacksfabriken i Filipstad;Peter Bengtsson
+397;5565184057;Autotech Teknikinformation i Stockholm AB;Emil Fransson
+398;5565184503;Barilla Sverige AB;Peter Bengtsson
+399;5565205308;Comrod Mission Systems AB;Filip Mbanza
+400;556525-4256;Origo Group Data Collection AB;Filip Mbanza
+401;5565251583;Skadepoolen i Närke Aktiebolag;Peter Bengtsson
+402;556526-8538;Thermotech Scandinavia AB;Anton Fellbrink
+403;5565260592;Etteplan Sweden AB;Anton Fellbrink
+404;5565260592;Etteplan Sweden AB;Emil Fransson
+405;5565260592;Etteplan Sweden AB;Emil Fransson
+406;5565260592;Etteplan Sweden AB;Filip Mbanza
+407;5565260592;Etteplan Sweden AB;Filip Mbanza
+408;5565261046;Shortlink AB - Linköpingskontoret;Filip Mbanza
+409;556527-2001;AddSecure AB;Emil Fransson
+410;5565272738;Storbildsfabriken i Sverige AB;Filip Mbanza
+411;5565275418;Ropo Capital Sweden AB;Emil Fransson
+412;5565277687;Tutus Data AB;Emil Fransson
+413;5565286415;Entre Syd i Västerbotten AB;Emil Fransson
+414;5565295911;Certego AB;Filip Mbanza
+415;5565295911;Certego AB;Filip Mbanza
+416;5565295911;Certego AB;Filip Mbanza
+417;5565295911;Certego AB;Filip Mbanza
+418;5565295911;Certego AB;Peter Bengtsson
+419;5565295911;Certego AB;Peter Bengtsson
+420;5565295911;Certego AB;Filip Mbanza
+421;5565302022;Torsåsen Fågelprodukter AB;Peter Bengtsson
+422;5565312583;Aircenter AB;Emil Fransson
+423;5565316352;Inrego Aktiebolag;Emil Fransson
+424;5565322145;Kongsberg Automotive AB;Peter Bengtsson
+425;5565346631;Axians ICT AB;Filip Mbanza
+426;5565346631;Axians ICT AB;Filip Mbanza
+427;5565354726;Great Security Sverige AB;Peter Bengtsson
+428;5565366944;Treasury Systems Sweden AB;Filip Mbanza
+429;5565366944;Treasury Systems Sweden AB;Emil Fransson
+430;5565385043;Textilia Tvätt & Textilservice AB;Peter Bengtsson
+431;5565387288;Svartviks Svarvteknik Aktiebolag;Anton Fellbrink
+432;5565387502;Ryds Bilglas AB;Emil Fransson
+433;5565394375;S-G Lundins Elektriska Aktiebolag;Peter Bengtsson
+434;5565395521;SE Däckservice AB;Anton Fellbrink
+435;556540-3234;CTEK Sweden AB;Filip Mbanza
+436;5565408514;Europress AB;Emil Fransson
+437;5565409165;Picea Bygg AB;Anton Fellbrink
+438;5565424297;Linde Material Handling AB;Peter Bengtsson
+439;5565429841;SWECO AB (publ);Filip Mbanza
+440;5565429841;SWECO AB (publ);Filip Mbanza
+441;5565429841;SWECO AB (publ);Filip Mbanza
+442;5565464525;Avalon Innovation Technology AB;Filip Mbanza
+443;5565469300;Alltransport i Östergötland AB;Filip Mbanza
+444;556547-0134;Momentum Industrial AB - Lkpg;Filip Mbanza
+445;5565477360;Bilskadecenter i Enköping Aktiebolag;Peter Bengtsson
+446;5565481867;AVL MTC Motortestcenter AB;Emil Fransson
+447;5565484499;Softhouse Sydväst AB;Peter Bengtsson
+448;5565487757;Klippan Safety AB;Peter Bengtsson
+449;5565488243;Enghouse Networks (Sweden) AB;Emil Fransson
+450;5565489696;Axess Logistics Sweden AB - Södertälje;Emil Fransson
+451;556549-7020;Gamla Länsförsäkringar AB - Linköping;Filip Mbanza
+452;556549-8952;Cygate AB - Nkpg;Filip Mbanza
+453;5565497541;InfoCare Service AB;Anton Fellbrink
+454;5565498952;Telia Cygate AB;Emil Fransson
+455;5565500237;Meritor HVS AB;Peter Bengtsson
+456;5565506226;Implema Aktiebolag;Peter Bengtsson
+457;5565506309;Sokigo AB;Emil Fransson
+458;5565548293;Flowbird Sverige AB;Emil Fransson
+459;556555-1073;Eltel Networks Infranet AB - Nkpg;Filip Mbanza
+460;5565551073;Eltel Networks Infranet AB;Filip Mbanza
+461;5565566535;Advania Sverige 35 AB;Peter Bengtsson
+462;5565580825;Centercom AB;Filip Mbanza
+463;5565584413;Omnitor AB;Emil Fransson
+464;5565594164;Emhart Glass Sweden AB;Peter Bengtsson
+465;5565594164;Emhart Glass Sweden AB;Anton Fellbrink
+466;5565601837;Engströms Lastbilar AB;Filip Mbanza
+467;5565616058;Fresenius Kabi AB;Emil Fransson
+468;5565619839;Lecab Lastbilar AB;Peter Bengtsson
+469;5565686721;Peab Anläggning AB;Filip Mbanza
+470;5565690988;KeyPlants AB;Emil Fransson
+471;5565705497;UCS Group AB;Filip Mbanza
+472;5565706073;Winassist System Aktiebolag;Emil Fransson
+473;5565716924;Swedish Match North Europe AB;Emil Fransson
+474;5565719449;Strukton Rail AB;Emil Fransson
+475;556575-0832;Wipro Infrastructure Engineering AB;Anton Fellbrink
+476;556575-0832;Wipro Infrastructure Engineering AB Östersund;Anton Fellbrink
+477;5565753042;Iver Sverige AB;Filip Mbanza
+478;5565753042;Iver Sverige AB;Peter Bengtsson
+479;5565763447;Lemont AB;Peter Bengtsson
+480;5565764668;Together Tech AB;Filip Mbanza
+481;5565765954;JOBmeal AB;Anton Fellbrink
+482;5565775664;KMP Konsult AB;Emil Fransson
+483;5565779229;FIBE AB;Emil Fransson
+484;5565786414;Coromatic AB;Anton Fellbrink
+485;5565786414;Coromatic AB;Emil Fransson
+486;5565786414;Coromatic AB;Filip Mbanza
+487;5565794400;Arla Foods AB - Division Ingredients Vimmerby;Peter Bengtsson
+488;5565808846;Nordic Railway Construction Sverige AB;Emil Fransson
+489;5565818910;Avaus Marketing Innovations AB;Emil Fransson
+490;5565835898;Beslagsgrossisten i Linköping AB;Filip Mbanza
+491;556588-3591;PacsOn Östgöta Papper AB;Filip Mbanza
+492;5565915385;Silex Microsystems AB;Emil Fransson
+493;5565924056;NeTel AB;Emil Fransson
+494;5565987707;Eltekniska Ingenjörsbyrån i Sundsvall AB;Anton Fellbrink
+495;5565987814;Flooré AB;Anton Fellbrink
+496;5566008032;Acte Solutions AB;Emil Fransson
+497;5566014683;Dynamic Code AB (publ);Filip Mbanza
+498;5566026331;KWD Nuclear Instruments Aktiebolag;Filip Mbanza
+499;5566035597;digiPlant Aktiebolag;Peter Bengtsson
+500;556604-3666;S.E Equipment AB;Filip Mbanza
