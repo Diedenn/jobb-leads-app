@@ -1,17 +1,16 @@
 import streamlit as st
 import pandas as pd
 import re
-import hashlib
 from io import BytesIO
 from openai import OpenAI
 import os
 
 st.set_page_config(page_title="Jobbmatchning", layout="wide")
 
-# --- Enkel lösenordsskydd ---
+# --- Enkel lösenordsskydd utan hash ---
 def check_password():
     def password_entered():
-        if hashlib.sha256(st.session_state["password"].encode()).hexdigest() == st.secrets["app_password"]:
+        if st.session_state["password"] == st.secrets["app_password"]:
             st.session_state["password_correct"] = True
             del st.session_state["password"]
         else:
@@ -56,13 +55,9 @@ kund_team['orgnr'] = kund_team['orgnr'].str.replace(r'[^0-9]', '', regex=True)
 kund_master['orgnr'] = kund_master['orgnr'].str.replace(r'[^0-9]', '', regex=True)
 jobs_df['employer_organization_number'] = jobs_df['employer_organization_number'].astype(str).str.replace(r'[^0-9]', '', regex=True)
 
-# --- Val av kundlista ---
-kundval = st.sidebar.radio("Filtrera mot:", ["Endast mina kunder", "Hela bolaget"])
-
-# --- Säljare att välja mellan om 'endast mina kunder' är valt ---
-if kundval == "Endast mina kunder":
-    saljare_lista = kund_team['saljare'].dropna().unique().tolist()
-    val_saljare = st.sidebar.selectbox("Välj säljare (filtrerar kundlistan)", saljare_lista)
+# --- Grundläggande filtrering ---
+val_saljare = st.sidebar.selectbox("Filtrera på säljare (valfritt)", ["Visa alla"] + sorted(kund_team['saljare'].dropna().unique().tolist()))
+if val_saljare != "Visa alla":
     aktiv_kundlista = kund_team[kund_team['saljare'] == val_saljare]
 else:
     aktiv_kundlista = kund_master
@@ -97,7 +92,7 @@ if require_phone:
     df = df[df['telefon'].notnull()]
 if exclude_union:
     df = df[~df['description'].str.contains("fack|unionen|saco|förbund", case=False, na=False)]
-if kundval == "Endast mina kunder":
+if val_saljare != "Visa alla":
     df = df[df['kund'] == True]
 if only_non_customers:
     df = df[~df['kund']]
