@@ -34,6 +34,18 @@ def fetch_jobs_from_api(start_date, end_date):
 
 def save_to_db(df):
     conn = sqlite3.connect(DB_PATH)
-    df.to_sql(TABLE_NAME, conn, if_exists='append', index=False)
-    
-print(f"✅ Klar! Totalt sparade annonser: {len(df)}")
+    df.to_sql(TABLE_NAME, conn, if_exists='replace', index=False)
+    conn.close()
+
+# ✅ HÄR KÖRS DET!
+if __name__ == "__main__":
+    print("🔄 Hämtar jobbannonser...")
+    start = datetime.today() - timedelta(days=2)
+    end = datetime.today()
+    df = fetch_jobs_from_api(start, end)
+
+    if not df.empty:
+        save_to_db(df)
+        print(f"✅ Klar! Totalt sparade annonser: {len(df)}")
+    else:
+        print("⚠️ Inga annonser hämtades.")
