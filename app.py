@@ -15,8 +15,8 @@ openai.api_key = st.secrets["OPENAI_API_KEY"]
 jobs_excel = pd.ExcelFile("data/jobbdata.xlsx")
 jobs_df = jobs_excel.parse(jobs_excel.sheet_names[0])
 
-kund_team = pd.read_csv("data/kundlista_team.csv", dtype=str)
-kund_master = pd.read_csv("data/kundlista_master.csv", dtype=str)
+kund_team = pd.read_csv("data/kundlista_team.csv", sep=';', dtype=str)
+kund_master = pd.read_csv("data/kundlista_master.csv", sep=';', dtype=str)
 
 # --- Rensa kolumnnamn ---
 jobs_df.columns = jobs_df.columns.str.lower()
