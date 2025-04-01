@@ -32,38 +32,62 @@ st.title("Jobbmatchning & Leadsanalys")
 
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
-# --- Välj datumintervall ---
+# --- Välj datumintervall och filter ---
 st.sidebar.markdown("### 📅 Hämta jobbannonser via API")
 start_date = st.sidebar.date_input("Startdatum", value=datetime.today() - timedelta(days=7))
 end_date = st.sidebar.date_input("Slutdatum", value=datetime.today())
+q_filter = st.sidebar.text_input("Sökord (t.ex. elektriker)", value="")
+region_filter = st.sidebar.text_input("Region-ID (t.ex. 1 för Stockholm)", value="")
+extent_filter = st.sidebar.selectbox("Arbetstid", ["", "1 - Heltid", "2 - Deltid"])
+occupation_group_filter = st.sidebar.text_input("Yrkesgrupp-ID (valfritt)", value="")
 
+kundfilter_val = st.sidebar.radio("Kundfilter", ["Alla annonser", "Endast nuvarande kunder", "Endast mina kunder", "Endast nya leads"])
+
+# --- API-hämtning dag för dag ---
 @st.cache_data(ttl=3600)
-def hamta_jobtech_data(start, end):
+def hamta_jobtech_data_interval(start, end):
     url = "https://jobsearch.api.jobtechdev.se/search"
     headers = {"accept": "application/json"}
     all_hits = []
-    offset = 0
+    current_date = start
 
-    while True:
-        params = {
-            "limit": 100,
-            "offset": offset,
-            "published-after": f"{start}T00:00:00",
-            "published-before": f"{end}T23:59:59"
-        }
-        r = requests.get(url, headers=headers, params=params)
-        if r.status_code != 200:
-            break
-        data = r.json()
-        hits = data.get("hits", [])
-        if not hits:
-            break
-        all_hits.extend(hits)
-        offset += 100
+    while current_date <= end:
+        next_day = current_date + timedelta(days=1)
+        offset = 0
+
+        while True:
+            params = {
+                "limit": 100,
+                "offset": offset,
+                "published-after": f"{current_date}T00:00:00",
+                "published-before": f"{next_day}T00:00:00"
+            }
+            if q_filter:
+                params["q"] = q_filter
+            if region_filter:
+                params["region"] = region_filter
+            if extent_filter.startswith("1"):
+                params["extent"] = "1"
+            elif extent_filter.startswith("2"):
+                params["extent"] = "2"
+            if occupation_group_filter:
+                params["occupation-group-id"] = occupation_group_filter
+
+            r = requests.get(url, headers=headers, params=params)
+            if r.status_code != 200:
+                break
+            data = r.json()
+            hits = data.get("hits", [])
+            if not hits:
+                break
+            all_hits.extend(hits)
+            offset += 100
+        current_date = next_day
+
     return pd.json_normalize(all_hits)
 
 if st.sidebar.button("🔄 Hämta nya jobbannonser"):
-    jobs_df = hamta_jobtech_data(start_date, end_date)
+    jobs_df = hamta_jobtech_data_interval(start_date, end_date)
     st.session_state["jobs_df"] = jobs_df
 
 # --- Använd cachead version om inget klickas ---
@@ -86,7 +110,6 @@ kund_master['orgnr'] = kund_master['orgnr'].str.replace(r'[^0-9]', '', regex=Tru
 # --- Förbered kolumner ---
 jobs_df.columns = jobs_df.columns.str.lower()
 
-# Visa tillgängliga kolumner vid behov
 if st.sidebar.checkbox("Visa tillgängliga kolumner (debug)"):
     st.write(jobs_df.columns.tolist())
 
@@ -102,46 +125,26 @@ jobs_df['working_hours_type'] = jobs_df.get('working_time_extent.label', pd.NA)
 # --- Matchning ---
 val_saljare = st.sidebar.selectbox("Filtrera på säljare (valfritt)", ["Visa alla"] + sorted(kund_team['saljare'].dropna().unique().tolist()))
 aktiv_kundlista = kund_team[kund_team['saljare'] == val_saljare] if val_saljare != "Visa alla" else kund_master
-jobs_df['kund'] = jobs_df['orgnr'].isin(aktiv_kundlista['orgnr'])
+jobs_df['kund'] = jobs_df['orgnr'].isin(kund_master['orgnr'])
+jobs_df['mina_kunder'] = jobs_df['orgnr'].isin(aktiv_kundlista['orgnr'])
 
 # --- Extrahera kontaktuppgifter ---
 jobs_df['telefon'] = jobs_df['description'].str.extract(r'(\b\d{2,4}[-\s]?\d{5,})')
 jobs_df['kontakt_namn'] = jobs_df['description'].str.extract(r'(\b[A-ZÅÄÖ][a-zåäö]+ [A-ZÅÄÖ][a-zåäö]+)')
 jobs_df['kontakt_titel'] = jobs_df['description'].str.extract(r'(?:titel|roll|befattning)[:\-\s]*([\w \u00e5\u00e4\u00f6]+)', flags=re.IGNORECASE)
 
-# --- Manuella filter i sidopanel ---
-selected_region = st.sidebar.multiselect("Region", options=jobs_df['region'].dropna().unique())
-selected_hours = st.sidebar.multiselect("Arbetstid", options=jobs_df['working_hours_type'].dropna().unique())
-job_title_query = st.sidebar.text_input("Jobbtitel (del av text)")
-require_phone = st.sidebar.checkbox("Endast med telefonnummer")
-exclude_union = st.sidebar.checkbox("Exkludera fackliga kontakter")
-only_non_customers = st.sidebar.checkbox("Visa endast nya leads")
-
-# --- Grundfilter ---
+# --- Filtrera enligt kundval ---
 df = jobs_df.copy()
-if selected_region:
-    df = df[df['region'].isin(selected_region)]
-if selected_hours:
-    df = df[df['working_hours_type'].isin(selected_hours)]
-if job_title_query:
-    df = df[
-        df['headline'].str.contains(job_title_query, case=False, na=False) |
-        df['description'].str.contains(job_title_query, case=False, na=False) |
-        df['occupation_group'].str.contains(job_title_query, case=False, na=False) |
-        df['occupation'].str.contains(job_title_query, case=False, na=False)
-    ]
-if require_phone:
-    df = df[df['telefon'].notnull()]
-if exclude_union:
-    df = df[~df['description'].str.contains("fack|unionen|saco|förbund", case=False, na=False)]
-if val_saljare != "Visa alla":
+if kundfilter_val == "Endast nuvarande kunder":
     df = df[df['kund'] == True]
-if only_non_customers:
-    df = df[~df['kund']]
+elif kundfilter_val == "Endast mina kunder":
+    df = df[df['mina_kunder'] == True]
+elif kundfilter_val == "Endast nya leads":
+    df = df[df['kund'] == False]
 
 # --- Visa resultat ---
 st.subheader(f"Resultat: {len(df)} annonser")
-st.dataframe(df[['employer_name', 'headline', 'description', 'region', 'working_hours_type', 'telefon', 'kontakt_namn', 'kontakt_titel', 'kund']].reset_index(drop=True))
+st.dataframe(df[['employer_name', 'headline', 'description', 'region', 'working_hours_type', 'telefon', 'kontakt_namn', 'kontakt_titel', 'kund', 'mina_kunder']].reset_index(drop=True))
 
 # --- Export ---
 def to_excel_bytes(df):
