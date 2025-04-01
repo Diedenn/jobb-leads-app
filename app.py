@@ -152,7 +152,10 @@ jobs_df.columns = [str(col).lower() for col in jobs_df.columns]
 if st.sidebar.checkbox("Visa tillgängliga kolumner (debug)"):
     st.write(jobs_df.columns.tolist())
 
-jobs_df['orgnr'] = jobs_df.get('employer.organization_number', pd.NA).astype(str).str.replace(r'[^0-9]', '', regex=True)
+if 'employer.organization_number' in jobs_df.columns:
+    jobs_df['orgnr'] = jobs_df['employer.organization_number'].astype(str).str.replace(r'[^0-9]', '', regex=True)
+else:
+    jobs_df['orgnr'] = pd.NA
 jobs_df['description'] = jobs_df.get('description.text', pd.NA)
 jobs_df['headline'] = jobs_df.get('headline', pd.NA)
 jobs_df['region'] = jobs_df.get('workplace_address.region', pd.NA)
