@@ -35,3 +35,5 @@ def fetch_jobs_from_api(start_date, end_date):
 def save_to_db(df):
     conn = sqlite3.connect(DB_PATH)
     df.to_sql(TABLE_NAME, conn, if_exists='append', index=False)
+    
+print(f"✅ Klar! Totalt sparade annonser: {len(df)}")
