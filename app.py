@@ -77,8 +77,8 @@ if require_phone:
     df = df[df['telefon'].notnull()]
 if exclude_union:
     df = df[~df['description'].str.contains("fack|unionen|saco|förbund", case=False, na=False)]
-if only_non_customers:
-    df = df[~df['kund']]
+if kundval == "Endast mina kunder":
+    df = df[df['kund']]  # Endast de jobb som matchar den valda kunden
 
 # --- GPT-fråga ---
 with st.sidebar.expander("AI-fråga till datan"):
