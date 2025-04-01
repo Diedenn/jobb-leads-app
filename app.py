@@ -6,7 +6,7 @@ import openai
 import os
 
 st.set_page_config(page_title="Jobbmatchning", layout="wide")
-st.title("\ud83d\udcbc Jobbmatchning & Leadsanalys")
+st.title("💼 Jobbmatchning & Leadsanalys")
 
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
